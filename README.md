@@ -1,3 +1,26 @@
+# CCTV Streaming Server
+
+## Overview
+
+Docker app for streaming `.mp4` videos via HLS.
+
+## Components
+
+- **Frontend**: Svelte app for video playback.
+- **API**: Flask backend for HLS generation.
+- **Nginx**: Serves HLS files and routes requests.
+
+## Setup
+
+1. Put `.mp4` files in the `shared/` folder.
+2. Run with `docker-compose up --build`.
+3. Open `http://localhost:5001`.
+
+## Folders
+
+- `shared/`: Input videos.
+- `hls-output/`: HLS files.
+
 ```
 cctv-server
 ├─ docker-compose.yml
@@ -26,43 +49,4 @@ cctv-server
    │  ├─ App.svelte
    │  └─ main.js
    └─ tailwind.config.js
-
-```
-
-```
-cctv-server
-├─ docker-compose.yml
-├─ frontend
-│  ├─ .vscode
-│  │  └─ extensions.json
-│  ├─ Dockerfile
-│  ├─ index.html
-│  ├─ jsconfig.json
-│  ├─ package-lock.json
-│  ├─ package.json
-│  ├─ postcss.config.js
-│  ├─ public
-│  │  └─ vite.svg
-│  ├─ README.md
-│  ├─ src
-│  │  ├─ app.css
-│  │  ├─ App.svelte
-│  │  ├─ assets
-│  │  │  └─ svelte.svg
-│  │  ├─ lib
-│  │  │  └─ Counter.svelte
-│  │  ├─ main.js
-│  │  └─ vite-env.d.ts
-│  ├─ svelte.config.js
-│  ├─ tailwind.config.js
-│  └─ vite.config.js
-├─ hls-api
-│  ├─ app.py
-│  ├─ Dockerfile
-│  └─ requirements.txt
-├─ hls-output
-├─ nginx.conf
-├─ package-lock.json
-├─ README.md
-└─ shared
 ```

@@ -31,7 +31,7 @@ def generate_hls():
     output_path = os.path.join(OUTPUT_DIR, "output.m3u8")
 
     command = [
-    "ffmpeg",  # The FFmpeg tool is used for multimedia processing.
+    "ffmpeg", 
     "-y",  # Overwrite existing output files without asking.
     "-i", input_path,  # Specifies the input video file.
     "-c:v", "copy",  # Copies the video codec (no re-encoding for speed).
@@ -44,13 +44,11 @@ def generate_hls():
     output_path  # Specifies the output file for the HLS playlist.
 ]
 
-
     def wait_for_first_chunk():
         while True:
             files = os.listdir(OUTPUT_DIR)
             if any(f.endswith(".ts") for f in files):
                 break
-
 
     def clear_output_dir():
         for f in os.listdir(OUTPUT_DIR):
@@ -63,7 +61,6 @@ def generate_hls():
     clear_output_dir()
     process = threading.Thread(target=run_ffmpeg, args=(command,))
     process.start()
-
     wait_for_first_chunk()
 
     return jsonify({"message": "First chunk ready!", "playlist_url": f"{request.host_url}hls/output.m3u8"})
